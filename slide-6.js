@@ -69,6 +69,7 @@ export default class Slide6 extends Slide {
 		return `
 			<h3>Notes</h3>
 			<div>JavaScript is fast...sometimes too fast</div>
+			<div>Enable Paint flashing in the Rendering tool</div>
 			<div>Use DOM breakpoints to investigate</div>
 		`;
 	}

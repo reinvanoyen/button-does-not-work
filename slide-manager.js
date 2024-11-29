@@ -1,8 +1,17 @@
 export default class SlideManager {
 	constructor(slides = []) {
+
 		this.slides = slides;
 		this.slides.forEach(slide => slide.manager = this);
 		this.currentSlideIndex = parseInt(window.location.hash.replace('#', '')) || 0;
+
+		this.isTipsPanelOpen = false;
+		this.tipsPanelEl = document.getElementById('tips');
+		this.clippyEl = document.getElementById('clippy');
+		this.clippyEl.addEventListener('click', () => {
+			this.toggleTips();
+		});
+
 		this.initSlide();
 	}
 
@@ -13,8 +22,12 @@ export default class SlideManager {
 		document.getElementById('header').innerHTML = `
 			<h1>${this.currentSlideIndex === 0 ? 'Devtools !== console.log' : `Slide ${this.currentSlideIndex + 1}`}</h1>
 		`;
-		document.getElementById('tips').innerHTML = slide.getTips() || '';
 
+		this.tipsPanelEl.innerHTML = slide.getTips() || '';
+
+		this.clippyEl.children[0].src = `clippy-${this.currentSlideIndex+1}.gif`;
+
+		this.hideTips();
 		slide.init();
 	}
 
@@ -33,5 +46,20 @@ export default class SlideManager {
 		this.destroySlide();
 		this.currentSlideIndex--;
 		this.initSlide();
+	}
+
+	hideTips() {
+		this.tipsPanelEl.style.display = 'none';
+		this.isTipsPanelOpen = false;
+	}
+
+	openTips() {
+		this.tipsPanelEl.style.display = 'block';
+		this.isTipsPanelOpen = true;
+	}
+
+	toggleTips() {
+		this.tipsPanelEl.style.display = (this.isTipsPanelOpen ? 'none' : 'block');
+		this.isTipsPanelOpen = ! this.isTipsPanelOpen;
 	}
 }

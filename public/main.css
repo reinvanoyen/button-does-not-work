@@ -1,7 +1,8 @@
 #tips {
 	max-width: 25%;
 	position: absolute;
-	bottom: 1rem;
+	z-index: 9999;
+	bottom: 12rem;
 	right: 1rem;
 	background-color: #1a1a1a;
 	border-radius: 8px;
@@ -27,4 +28,20 @@
 	margin-left: .5em;
 	font-weight: bold;
 	font-size: .85em;
+}
+
+#clippy
+{
+	position: absolute;
+	z-index: 9999;
+	bottom: 2rem;
+	right: 2rem;
+	width: 12rem;
+	cursor: pointer;
+}
+
+#clippy img
+{
+	display: block;
+	width: 100%;
 }
